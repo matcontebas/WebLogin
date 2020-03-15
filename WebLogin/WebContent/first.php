@@ -1,12 +1,11 @@
 <html>
 <!--il programma controlla i dati di login provenienti da login.html -->
 <body>
-	<h1><?php
+<?php
 // session_start() avvia la sessione
 session_start();
 // echo "Ciao, sono first.php";
-?></h1>
-	<p> Benvenuto: <?php echo $_POST["user"]; ?> </p>
+?>
 <?php
 try {
     $hostname = "localhost";

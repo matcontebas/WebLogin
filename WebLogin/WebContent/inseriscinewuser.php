@@ -1,6 +1,8 @@
 <html>
 <!--il programma genera la query per inserire un nuovo user e psw nel database provenienti da new.html -->
+<title> Modulo inserimento nuova user e password</title>
 <body>
+<!-- Da decidere se mettere il controllo sulla sessione anche qui -->
 <h1><?php echo "Ciao, sono inseriscinewuser.php"; ?></h1>
 <p> New user inserito: <?php echo $_POST["newuser"]; ?> </p>
 <?php 
