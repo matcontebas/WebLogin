@@ -2,7 +2,7 @@
 <!--il programma genera la query per inserire un nuovo user e psw nel database provenienti da new.html -->
 <body>
 <h1><?php echo "Ciao, sono inseriscinewuser.php"; ?></h1>
-<p> Benvenuto: <?php echo $_POST["newuser"]; ?> </p>
+<p> New user inserito: <?php echo $_POST["newuser"]; ?> </p>
 <?php 
 $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matteo');
 		if ($mysqli->connect_error) {
@@ -13,7 +13,7 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
 			$user=$_POST["newuser"];
 			$password=$_POST["newpsw"];
 			$password_hashed=hash('SHA256', $password);//creazione dell'hash
-			echo $password_hashed . "\n";
+			echo 'password hashed: '.$password_hashed . "\n";
 			$query = "INSERT INTO login (userlogin, pswlogin) VALUES ('$user', '$password_hashed')";
 			if($mysqli->query($query)){
 				echo "Query OK";
