@@ -1,4 +1,5 @@
 <html>
+<body>
 <?php
 session_start();
 if (IsLogged()) {
@@ -13,8 +14,7 @@ if (IsLogged()) {
     <p> psw: <input name="newpsw" type="password"> </p>
     <p> <input name="bottoneinvio" value="invio" type="submit">
     <input value="Reimposta" type="reset"> </p>
-    </form>;
-    
+    </form>
  <?php
     // una volta controllata la variabile di sessione, la elimino per evitare che rimanga memorizzata
     // più a lungo di quello che serve.
@@ -23,9 +23,6 @@ if (IsLogged()) {
     echo "Login non effettuato";
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
 }
-?>
-<?php
-
 // la funzione IsLogged controlla se la variabile di Sessione utente è stata impostata
 function IsLogged()
 {
@@ -36,4 +33,5 @@ function IsLogged()
     }
 }
 ?>
+</body>
 </html>
