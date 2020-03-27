@@ -4,8 +4,27 @@ class cerca_chiave
 {
 
     private $db;
-
     private $val;
+    //è il campo del DB da utilizzare nell'SQL
+    private $campoDB;
+
+    /**
+     * getter della variabile $campoDB
+     * @return mixed
+     */
+    public function getCampoDB()
+    {
+        return $this->campoDB;
+    }
+
+    /**
+     * setter della variabile $campoDB
+     * @param mixed $campoDB
+     */
+    public function setCampoDB($campoDB)
+    {
+        $this->campoDB = $campoDB;
+    }
 
     /**
      *getter della variabile $db
@@ -54,7 +73,7 @@ class cerca_chiave
      * @param generico $valore_da_cercare:
      *            è il valore da cercare nel database e sul quale si imposta la query
      */
-    public function __construct($hostname, $dbname, $user, $pass, $valore_da_cercare)
+    public function __construct($hostname, $dbname, $user, $pass, $campoDBricerca, $valore_da_cercare)
     {
         // inizializzazione connessione dB MySql e creazione dell'oggetto $db
         $dB = new PDO("mysql:host=$hostname;dbname=$dbname", $user, $pass);
@@ -63,18 +82,24 @@ class cerca_chiave
         // $this->db=$dB;
         $this->setVal($valore_da_cercare);
         //$this->val = $valore_da_cercare;
+        //inizializzo il campo del DB nel quale fare la ricerca ovvero da inserire nell'sql
+        $this->setCampoDB($campoDBricerca);
     }
 
     public function controllo_doppi()
     {
         try {
             $valsicura = trim(filter_var($this->val, FILTER_SANITIZE_STRING));
-            $sql = "SELECT * FROM login WHERE userlogin = '$valsicura'";
+            //$sql = "SELECT * FROM login WHERE userlogin = '$valsicura'";
+            /*compongo la query inserendo come campo del DB in cui cercare il valore che si ottiene
+             * dal getter getCampoDB() che è un valore da fornire al costruttore chiamato $campoDBricerca
+             */
+            $sql = "SELECT * FROM login WHERE " . $this->getCampoDB()."= '$valsicura'";
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
             $totale = $stmt->rowCount();
             if ($totale > 0) {
-                echo "user già presente";
+                echo "user presente nel DB";
                 return false;
             } else {
                 echo "user non presente nel DB";

@@ -4,10 +4,10 @@
 <body>
 <!-- Da decidere se mettere il controllo sulla sessione anche qui -->
 <h1><?php echo "Ciao, sono inseriscinewuser.php"; ?></h1>
-<p> New user inserito: <?php echo $_POST["newuser"]; ?> </p>
+<p> User: <?php echo $_POST["newuser"]; ?> </p>
 <?php 
 include 'cerca_chiave.php';
-$mia_classe= new cerca_chiave("localhost","matteo","AccountProva","rn5skCZucrBfARRaCzUT.",$_POST["newuser"]);
+$mia_classe= new cerca_chiave("localhost","matteo","AccountProva","rn5skCZucrBfARRaCzUT.","userlogin",$_POST["newuser"]);
 if ($mia_classe->controllo_doppi()) {
     echo "si parte" . "\n";
 $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matteo');
