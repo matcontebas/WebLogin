@@ -9,7 +9,7 @@
 include 'cerca_chiave.php';
 $mia_classe= new cerca_chiave("localhost","matteo","AccountProva","rn5skCZucrBfARRaCzUT.","login","userlogin",$_POST["newuser"]);
 if ($mia_classe->controllo_doppi()) {
-    echo "si parte" . "\n";
+    echo " avvio inserimento nuove user nel DB"."<br>";
 $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matteo');
 		if ($mysqli->connect_error) {
     		die('Errore di connessione (' . $mysqli->connect_errno . ') '
@@ -19,7 +19,7 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
 			$user=$_POST["newuser"];
 			$password=$_POST["newpsw"];
 			$password_hashed=hash('SHA256', $password);//creazione dell'hash
-			echo 'password hashed: '.$password_hashed . "\n";
+			//echo 'password hashed: '.$password_hashed . "\n";
 			$query = "INSERT INTO login (userlogin, pswlogin) VALUES ('$user', '$password_hashed')";
 			if($mysqli->query($query)){
 				echo "Query OK";
@@ -28,6 +28,8 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
 					}
 			$mysqli->close();
 		}
+} else {
+    echo "User presente nel database. Nessun inserimento effettuato"."<br>";
 }
 		?>
 </body>

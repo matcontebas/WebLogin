@@ -90,6 +90,7 @@ class cerca_chiave
      * @param stringa $dbname: nome del DB (schema)
      * @param stringa $user: user di accesso al server MySQL
      * @param stringa $pass: psw di accesso al server MySQL
+     * @param stringa $Tabella: nome della tabella su cui si fa la query
      * @param stringa $campoDBricerca: è il nome del campo della tabella in cui cercare il valore $valore_da_cercare ovvero il nome del campo da mettere nell'sql
      * @param generico $valore_da_cercare: è il valore da cercare nel database e sul quale si imposta la query
      */
@@ -113,7 +114,7 @@ class cerca_chiave
     {
         try {
             // la seguente istruzione serve per evitare l'SQL Injection
-            $valsicura = trim(filter_var($this->val, FILTER_SANITIZE_STRING));
+            $valsicura = trim(filter_var($this->getVal(), FILTER_SANITIZE_STRING));
             //$sql = "SELECT * FROM login WHERE userlogin = '$valsicura'";
             /*compongo la query inserendo come campo del DB in cui cercare il valore che si ottiene
              * dal getter getCampoDB() che è un valore da fornire al costruttore chiamato $campoDBricerca
@@ -123,10 +124,10 @@ class cerca_chiave
             $stmt->execute();
             $totale = $stmt->rowCount();
             if ($totale > 0) {
-                echo "user presente nel DB";
+                //echo "user presente nel DB";
                 return false;
             } else {
-                echo "user non presente nel DB";
+                //echo "user non presente nel DB";
                 return true;
             }
             $this->db = null;
