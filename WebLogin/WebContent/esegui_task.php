@@ -10,8 +10,8 @@ if (IsLogged()) {
     echo "<h1> form di inserimento nuovo user & psw </h1>";
 ?>    
     <form name="moduloinserimento" action="inseriscinewuser.php" method="post">
-    <p> user: <input name="newuser" type="text"> </p>
-    <p> psw: <input name="newpsw" type="password"> </p>
+    <p> user: <input name="newuser" type="text" required> </p>
+    <p> psw: <input name="newpsw" type="password" required> </p>
     <p> <input name="bottoneinvio" value="invio" type="submit">
     <input value="Reimposta" type="reset"> </p>
     </form>
