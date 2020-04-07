@@ -4,7 +4,7 @@
 <body>
 <!-- Da decidere se mettere il controllo sulla sessione anche qui -->
 <h1><?php echo "Ciao, sono inseriscinewuser.php"; ?></h1>
-<p> User: <?php echo $_POST["newuser"]; ?> </p>
+<p> User: <?php echo controllo_input($_POST["newuser"]); ?> </p>
 <?php 
 include 'cerca_chiave.php';
 $mia_classe= new cerca_chiave("localhost","matteo","AccountProva","rn5skCZucrBfARRaCzUT.","login","userlogin",$_POST["newuser"]);
@@ -16,10 +16,15 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
             . $mysqli->connect_error);
 		} else {
 			echo 'Connesso con MySQLi. ' . $mysqli->host_info . "<br>";
-			$user=$_POST["newuser"];
-			$password=$_POST["newpsw"];
+			//purifico l'input utente con la funzione controllo_input
+			$user=controllo_input($_POST["newuser"]);
+			/*purifico la password con controllo input. Attenzione bisogna che la password
+			*non contenga nè spazi, nè backslashes, nè caratteri tipo<,>, etc altrimenti
+			*sarà dicersa da quella che l'utente ha pensato di inserire.
+			*/
+			$password=controllo_input($_POST["newpsw"]);
+			echo "<br>". $password . "<br>";
 			$password_hashed=hash('SHA256', $password);//creazione dell'hash
-			//echo 'password hashed: '.$password_hashed . "\n";
 			$query = "INSERT INTO login (userlogin, pswlogin) VALUES ('$user', '$password_hashed')";
 			if($mysqli->query($query)){
 				echo "Query OK";
@@ -30,6 +35,22 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
 		}
 } else {
     echo "User presente nel database. Nessun inserimento effettuato"."<br>";
+}
+/**
+ * La function toglie da un generico dato di input utente proveniente da un FORM html
+ * tutti i caratteri speciali che potrebbero prestarsi ad attacchi hacker
+ * @param generico $data: dato in ingresso utente da form
+ * @return generico: restituisce il dato purificato dai caratteri speciali
+ */
+function controllo_input ($data) {
+    //si tolgono gli spazi
+    $data=trim($data);
+    //toglie i backslashes
+    $data=stripslashes($data);
+    //converte i caratteri speciali come per esempio < in HTML entities in modo da non permettere
+    //l'inserimento di script Javascript
+    $data=htmlspecialchars($data);
+    return $data;
 }
 		?>
 </body>

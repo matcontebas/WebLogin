@@ -130,7 +130,9 @@ class cerca_chiave
                 //echo "user non presente nel DB";
                 return true;
             }
-            $this->db.close();
+            //chiudo la connessione con il database
+            $this->getDb().close();
+            //$this->db.close();
             $this->db = null;
         } catch (PDOException $e) {
             echo "Errore: " . $e->getMessage();
