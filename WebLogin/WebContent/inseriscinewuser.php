@@ -3,11 +3,15 @@
 <title> Modulo inserimento nuova user e password</title>
 <body>
 <!-- Da decidere se mettere il controllo sulla sessione anche qui -->
-<h1><?php echo "Ciao, sono inseriscinewuser.php"; ?></h1>
-<p> User: <?php echo controllo_input($_POST["newuser"]); ?> </p>
 <?php 
 include 'cerca_chiave.php';
-$mia_classe= new cerca_chiave("localhost","matteo","AccountProva","rn5skCZucrBfARRaCzUT.","login","userlogin",$_POST["newuser"]);
+echo "<h1>"."Ciao, sono inseriscinewuser.php"."</h1>";
+//purifico l'input utente con la funzione controllo_input
+$user=controllo_input($_POST["newuser"]);
+echo "<p>"."User: " . $user ."</p>";
+//il prossimo if consente di controllare se la stringa user è vuota
+if ($user<>"") {
+$mia_classe= new cerca_chiave("localhost","matteo","AccountProva","rn5skCZucrBfARRaCzUT.","login","userlogin",$user);
 if ($mia_classe->controllo_doppi()) {
     echo " avvio inserimento nuove user nel DB"."<br>";
 $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matteo');
@@ -16,8 +20,6 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
             . $mysqli->connect_error);
 		} else {
 			echo 'Connesso con MySQLi. ' . $mysqli->host_info . "<br>";
-			//purifico l'input utente con la funzione controllo_input
-			$user=controllo_input($_POST["newuser"]);
 			/*purifico la password con controllo input. Attenzione bisogna che la password
 			*non contenga nè spazi, nè backslashes, nè caratteri tipo<,>, etc altrimenti
 			*sarà dicersa da quella che l'utente ha pensato di inserire.
@@ -36,6 +38,11 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
 } else {
     echo "User presente nel database. Nessun inserimento effettuato"."<br>";
 }
+//Fine if controllo doppi----------------------------------------------------------------
+} else {
+    echo "la user non può essere una stringa vuota";
+}
+
 /**
  * La function toglie da un generico dato di input utente proveniente da un FORM html
  * tutti i caratteri speciali che potrebbero prestarsi ad attacchi hacker
@@ -47,6 +54,8 @@ function controllo_input ($data) {
     $data=trim($data);
     //toglie i backslashes
     $data=stripslashes($data);
+    //FILTER_SANITIZE_STRING filter removes tags and remove or encode special characters from a string.
+    $data=filter_var($data,FILTER_SANITIZE_STRING);
     //converte i caratteri speciali come per esempio < in HTML entities in modo da non permettere
     //l'inserimento di script Javascript
     $data=htmlspecialchars($data);
