@@ -1,6 +1,11 @@
+<!DOCTYPE html>
 <html>
+<head>
+<meta http-equiv="content-type"
+	content="text/html; charset=windows-1252">
 <!--il programma genera la query per inserire un nuovo user e psw nel database provenienti da new.html -->
 <title> Modulo inserimento nuova user e password</title>
+</head>
 <body>
 <!-- Da decidere se mettere il controllo sulla sessione anche qui -->
 <?php 
@@ -40,7 +45,8 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
 }
 //Fine if controllo doppi----------------------------------------------------------------
 } else {
-    echo "la user non può essere una stringa vuota";
+    //&ograve corrisponde alla ò
+    echo "la user non pu&ograve essere una stringa vuota";
 }
 
 /**
