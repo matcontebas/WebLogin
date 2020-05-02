@@ -4,6 +4,7 @@ class cerca_chiave
 {
     //$db è una classe POD che contiene la connessione ad DB
     private $db;
+    //$tabella è il nome della tabella del DB MySQL
     private $tabella;
     //$val contiene la stringa da ricercare nel DB
     private $val;
@@ -109,6 +110,12 @@ class cerca_chiave
         //inizializzo il campo del DB nel quale fare la ricerca ovvero da inserire nell'sql
         $this->setCampoDB($campoDBricerca);
     }
+    /**
+     * Il metodo controllo_doppi() controlla se la stringa $valore_da_cercare, ovvero
+     * la user, è già presente nella tabella del database. Se è assente si procede all'inserimento nel
+     * DB, altrimenti no. Proprio per questo restituisce un boolean
+     * @return boolean
+     */
 
     public function controllo_doppi()
     {
