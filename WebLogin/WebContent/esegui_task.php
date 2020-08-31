@@ -20,7 +20,7 @@ if (IsLogged()) {
     // più a lungo di quello che serve.
     unset($_SESSION["utente"]);
  } else {
-    echo "Login non effettuato";
+    echo "<p>Login non effettuato</p>";
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
 }
 // la funzione IsLogged controlla se la variabile di Sessione utente è stata impostata

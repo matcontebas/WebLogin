@@ -41,7 +41,7 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
 			$mysqli->close();
 		}
 } else {
-    echo "User presente nel database. Nessun inserimento effettuato"."<br>";
+    echo "Buongiorno " . $user . " La user inserita &egrave presente nel database. Nessun inserimento effettuato"."<br>";
     echo "<br/>";
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
 }
