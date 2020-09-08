@@ -1,5 +1,10 @@
 <html>
+<head>
+<title>Modulo di inserimento new user</title>
+<script type="text/javascript" src="controlloinput.js"></script>
+</head>
 <body>
+<h1> form di inserimento nuovo user & psw </h1>
 <?php
 session_start();
 if (IsLogged()) {
@@ -7,10 +12,9 @@ if (IsLogged()) {
     echo "<p> Buongiorno user <b>";
     echo $_SESSION["utente"];
     echo "</b></p>";
-    echo "<h1> form di inserimento nuovo user & psw </h1>";
 ?>    
-    <form name="moduloinserimento" action="inseriscinewuser.php" method="post">
-    <p> user: <input name="newuser" type="text" required> </p>
+    <form name="moduloinserimento" action="inseriscinewuser.php" method="post" onsubmit="return MyFunction(document.getElementById('new_user').value)">
+    <p> user: <input name="newuser" id="new_user" type="text" required> </p>
     <p> psw: <input name="newpsw" type="password" required> </p>
     <p> <input name="bottoneinvio" value="invio" type="submit">
     <input value="Reimposta" type="reset"> </p>

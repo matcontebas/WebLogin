@@ -30,18 +30,18 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
 			*sarà dicersa da quella che l'utente ha pensato di inserire.
 			*/
 			$password=controllo_input($_POST["newpsw"]);
-			echo "<br>". $password . "<br>";
+			//echo "<br>". $password . "<br>";
 			$password_hashed=hash('SHA256', $password);//creazione dell'hash
 			$query = "INSERT INTO login (userlogin, pswlogin) VALUES ('$user', '$password_hashed')";
 			if($mysqli->query($query)){
-				echo "Query OK";
+				echo "<p> Query OK" . "</p>" . "<a href='login.html'> Tornare alla pagina di login </a>";
 				} else {
 				die($mysqli->error);	
 					}
 			$mysqli->close();
 		}
 } else {
-    echo "Buongiorno " . $user . " La user inserita &egrave presente nel database. Nessun inserimento effettuato"."<br>";
+    echo "Buongiorno la user " . $user ." inserita &egrave presente nel database. Nessun inserimento effettuato"."<br>";
     echo "<br/>";
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
 }
