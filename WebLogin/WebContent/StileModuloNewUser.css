@@ -1,0 +1,11 @@
+@charset "ISO-8859-1";
+/*Header è un contenitore simile a div*/
+/*margin: auto serve per centrare il contenitore article*/
+article {
+	border: 1px solid red;
+	margin: auto;
+	width: 50%;
+}
+p {
+	text-align: center;
+}

@@ -31,9 +31,10 @@ try {
         header("Location: esegui_task.php");
     } else {
         echo "<p> Login NON corretto </p>";
-        // l'istruzione header rimanda al sito di partenza in questo caso login.html? o a esegui_task.php? Da decidere
+        // l'istruzione header rimanda al sito LoginErrato.html per indicare all'utente l'errore e riproporre il form
         header("Location: LoginErrato.html");
     }
+    //gestione errore
     $db = null;
 } catch (PDOException $e) {
     echo "Errore: " . $e->getMessage();

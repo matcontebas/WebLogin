@@ -15,7 +15,8 @@ h1 {
 }
 
 div {
-	margin: 10px;
+	margin: auto;
+	width: 50%;
 	border: 5px solid green;
 	background-color: Lightgreen;
 	/*filter:drop-shadow(5px,9px,2px,red); non funziona*/
