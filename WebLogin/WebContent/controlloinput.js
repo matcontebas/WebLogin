@@ -1,14 +1,17 @@
 /**
  * http://usejsdoc.org/
  */
-function MyFunction(campo) {
-	var user=campo;
-	var lung=user.length;
-	if (lung < 5) {
-		alert ("lunghezza stringa minore di 5 caratteri: "+ user + " "+ lung + " form bloccato");
+function MyFunction(campouser, campopsw) {
+	var user=campouser;
+	var lunguser=user.length;
+	var psw=campopsw;
+	var lungpsw=psw.length;
+	alert("lunghezza password: " + lungpsw);
+	if (lunguser < 5 || lungpsw < 5) {
+		alert ("lunghezza user o psw minore di 5 caratteri: "+ user + " "+ lunguser + " password " + psw + " " + lungpsw +" form bloccato");
 		return false;
 	} else {
-		alert ("lunghezza stringa maggiore uguale a 5 caratteri; user: "+ user + " lunghezza: " + lung + " Form va avanti");
+		alert ("lunghezza user maggiore uguale a 5 caratteri; user: "+ user + " lunghezza: " + lunguser + "; password "+ psw + " "+ lungpsw +". </br> Form va avanti");
 		return true;
 	}
 }
