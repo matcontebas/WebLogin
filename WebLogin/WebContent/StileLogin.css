@@ -44,3 +44,7 @@ input[type=submit], input[type=reset] {
 	margin: 4px 2px;
 	cursor: pointer;
 }
+p.err {
+	color: red;
+	text-align: center;
+}	

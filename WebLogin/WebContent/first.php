@@ -32,7 +32,7 @@ try {
     } else {
         echo "<p> Login NON corretto </p>";
         // l'istruzione header rimanda al sito di partenza in questo caso login.html? o a esegui_task.php? Da decidere
-        header("Location: esegui_task.php");
+        header("Location: LoginErrato.html");
     }
     $db = null;
 } catch (PDOException $e) {
