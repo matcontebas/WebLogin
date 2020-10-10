@@ -5,7 +5,7 @@
 <link type="text/css" rel="stylesheet" href="StileModuloNewUser.css">
 </head>
 <body>
-<h1> form di inserimento nuovo user e psw </h1>
+<h1> Form di inserimento nuovo user e psw </h1>
 <?php
 session_start();
 if (IsLogged()) {
@@ -42,6 +42,7 @@ function IsLogged()
 }
 ?>
 <footer>
+<p id="err" class= "errore"></p>
 <p>modulo PHP in esecuzione: esegui_task</p>
 </footer>
 </body>

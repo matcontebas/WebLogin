@@ -1,5 +1,11 @@
 @charset "ISO-8859-1";
 /*Header è un contenitore simile a div*/
+h1 {
+	text-align: center;
+	color: red;
+	/* la seguente istruzione genera l'ombra grigia*/
+	text-shadow: 5px 10px 1px #93968f;
+}
 /*margin: auto serve per centrare il contenitore article*/
 article {
 	border: 2px solid red;
@@ -9,4 +15,7 @@ article {
 }
 p {
 	text-align: center;
+}
+p.errore{
+	color: red;
 }
