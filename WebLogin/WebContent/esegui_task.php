@@ -9,7 +9,7 @@
 <?php
 session_start();
 if (IsLogged()) {
-    echo "<p> esegui task </p>";
+    //echo "<p> esegui task </p>";
     echo "<p> Buongiorno user <b>";
     echo $_SESSION["utente"];
     echo "</b></p>";
@@ -41,5 +41,8 @@ function IsLogged()
     }
 }
 ?>
+<footer>
+<p>modulo PHP in esecuzione: esegui_task</p>
+</footer>
 </body>
 </html>

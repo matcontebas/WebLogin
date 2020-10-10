@@ -2,9 +2,10 @@
 /*Header è un contenitore simile a div*/
 /*margin: auto serve per centrare il contenitore article*/
 article {
-	border: 1px solid red;
+	border: 2px solid red;
 	margin: auto;
 	width: 50%;
+	background-color: orange;
 }
 p {
 	text-align: center;
