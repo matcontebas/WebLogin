@@ -4,7 +4,6 @@
 <?php
 // session_start() avvia la sessione
 session_start();
-// echo "Ciao, sono first.php";
 ?>
 <?php
 try {
