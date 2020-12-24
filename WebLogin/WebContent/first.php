@@ -26,8 +26,9 @@ try {
     if ($totale > 0) {
         echo "<p><b> Login corretto </b></p>";
         // se il login è corretto memorizzo nell'array Session la user e la psw
-        $_SESSION["utente"] = $_POST["user"];
-        $_SESSION["password"] = $_POST["psw"];
+        //$_SESSION["utente"] = $_POST["user"];
+        $_SESSION["utente"]=$usersicura;
+        $_SESSION["password"] = $pswsicura;
         header("Location: esegui_task.php");
     } else {
         echo "<p> Login NON corretto </p>";

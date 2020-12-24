@@ -10,7 +10,7 @@
 <!-- Da decidere se mettere il controllo sulla sessione anche qui -->
 <?php 
 include 'cerca_chiave.php';
-echo "<h1>"."Ciao, sono inseriscinewuser.php"."</h1>";
+echo "<h2>"."Esito inserimento new user e psw nel DB"."</h2>";
 //purifico l'input utente con la funzione controllo_input
 $user=controllo_input($_POST["newuser"]);
 echo "<p>"."User: " . $user ."</p>";
@@ -70,5 +70,9 @@ function controllo_input ($data) {
     return $data;
 }
 		?>
+<footer>
+<p id="err" class= "errore"></p>
+<p>modulo PHP in esecuzione: inseriscinewuser</p>
+</footer>
 </body>
 </html>
