@@ -27,11 +27,16 @@ if (IsLogged()) {
     // una volta controllata la variabile di sessione, la elimino per evitare che rimanga memorizzata
     // più a lungo di quello che serve.
     unset($_SESSION["utente"]);
+    unset($_SESSION["password"]);
  } else {
     echo "<p>Login non effettuato</p>";
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
 }
-// la funzione IsLogged controlla se la variabile di Sessione utente è stata impostata
+/**
+ * la funzione IsLogged controlla se la variabile di Sessione utente è stata impostata.
+ * Se tale variabile restituisce falso, significa che è necessario rifare il login.
+ * @return boolean: se la variabile di sessione "utente" è settata restituisce vero altrimenti falso
+ */
 function IsLogged()
 {
     if (isset($_SESSION["utente"])) {

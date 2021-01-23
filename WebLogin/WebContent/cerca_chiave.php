@@ -125,9 +125,12 @@ class cerca_chiave
             //$sql = "SELECT * FROM login WHERE userlogin = '$valsicura'";
             /*compongo la query inserendo come campo del DB in cui cercare il valore che si ottiene
              * dal getter getCampoDB() che è un valore da fornire al costruttore chiamato $campoDBricerca
+             * il valore da ricercare è parametrico (:valore) e viene definito con il binding
+             * (stmt->bindParam). Questo serve per evitare l'SQL Injection
              */
-            $sql = "SELECT * FROM ".$this->getTabella(). " WHERE " . $this->getCampoDB()."= '$valsicura'";
+            $sql = "SELECT * FROM ".$this->getTabella(). " WHERE " . $this->getCampoDB()."= :valore";
             $stmt = $this->db->prepare($sql);
+            $stmt->bindParam(':valore', $valsicura, PDO::PARAM_STR);
             $stmt->execute();
             $totale = $stmt->rowCount();
             if ($totale > 0) {
