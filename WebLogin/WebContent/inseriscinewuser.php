@@ -10,16 +10,27 @@
 <!-- Da decidere se mettere il controllo sulla sessione anche qui -->
 <?php 
 include 'cerca_chiave.php';
+$host= "localhost";
+$NomeDB="matteo";
+$tabellaDB="login";
+$user_DB="AccountProva";
+$psw_DB="rn5skCZucrBfARRaCzUT.";
+//Dati del server Altervista
+//$host= "localhost";
+//$NomeDB="my_matteobas";
+//$tabellaDB="login";
+//$user_DB="matteobas";
+//$psw_DB="";
 echo "<h2>"."Esito inserimento new user e psw nel DB"."</h2>";
 //purifico l'input utente con la funzione controllo_input
 $user=controllo_input($_POST["newuser"]);
 echo "<p>"."User: " . $user ."</p>";
 //il prossimo if consente di controllare se la stringa user è vuota
 if ($user<>"") {
-$mia_classe= new cerca_chiave("localhost","matteo","AccountProva","rn5skCZucrBfARRaCzUT.","login","userlogin",$user);
+$mia_classe= new cerca_chiave($host,$NomeDB,$user_DB,$psw_DB,$tabellaDB,"userlogin",$user);
 if ($mia_classe->controllo_doppi()) {
     echo " avvio inserimento nuove user nel DB"."<br>";
-$mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matteo');
+$mysqli = new mysqli($host, $user_DB, $psw_DB, $NomeDB);
 		if ($mysqli->connect_error) {
     		die('Errore di connessione (' . $mysqli->connect_errno . ') '
             . $mysqli->connect_error);
@@ -32,9 +43,20 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
 			$password=controllo_input($_POST["newpsw"]);
 			//echo "<br>". $password . "<br>";
 			$password_hashed=hash('SHA256', $password);//creazione dell'hash
-			$query = "INSERT INTO login (userlogin, pswlogin) VALUES ('$user', '$password_hashed')";
-			if($mysqli->query($query)){
-				echo "<p> Query OK" . "</p>" . "<a href='login.html'> Tornare alla pagina di login </a>";
+			/*Creazione dell'oggetto statement $stmt utilizzando i prepared statement.
+			i due punti interrogativi sono i segnaposto da associare poi alle variabili attraverso il metodo
+			bind_param*/
+			$stmt = $mysqli->prepare("INSERT INTO login (userlogin, pswlogin) VALUES (?, ?)");
+			$stmt->bind_param('ss',$user,$password_hashed);
+			if($stmt->execute()){
+				echo "<p> Query OK</p>";
+				//il seguente metodo indica quante righe sono state inserite
+				echo "<p>Righe generate: ". $mysqli->affected_rows ."</p>";
+				//il seguente metodo indica l'ultimo id inserito
+				echo "<p>Ultimo ID inserito: " .$mysqli->insert_id . "</p>";
+				echo "<p><a href='login.html'> Tornare alla pagina di login </a></p>";
+				//echo "<p><a href='index.html'> Tornare alla pagina di login </a></p>"; //da utilizzare per Altervista
+				
 				} else {
 				die($mysqli->error);	
 					}
@@ -44,6 +66,7 @@ $mysqli = new mysqli('localhost', 'AccountProva', 'rn5skCZucrBfARRaCzUT.', 'matt
     echo "Buongiorno la user " . $user ." inserita &egrave presente nel database. Nessun inserimento effettuato"."<br>";
     echo "<br/>";
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
+    //echo "<a href='login.html'> Tornare alla pagina di login </a>"; //da utilizzare per Altervista
 }
 //Fine if controllo doppi----------------------------------------------------------------
 } else {
