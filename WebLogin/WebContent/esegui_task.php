@@ -26,7 +26,7 @@ if (IsLogged()) {
  <?php
     // una volta controllata la variabile di sessione, la elimino per evitare che rimanga memorizzata
     // più a lungo di quello che serve.
-    unset($_SESSION["utente"]);
+    //unset($_SESSION["utente"]);
     unset($_SESSION["password"]);
  } else {
     echo "<p>Login non effettuato</p>";
