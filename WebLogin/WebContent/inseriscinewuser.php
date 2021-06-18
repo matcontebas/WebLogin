@@ -7,7 +7,6 @@
 <title>Modulo inserimento nuova user e password</title>
 </head>
 <body>
-	<!-- Da decidere se mettere il controllo sulla sessione anche qui -->
 <?php
 include 'cerca_chiave.php';
 $host = "localhost";
