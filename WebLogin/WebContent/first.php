@@ -48,8 +48,9 @@ if ($db != null) {
             // $_SESSION["utente"] = $_POST["user"];
             $_SESSION["utente"] = $usersicura;
             //$_SESSION["password"] = $pswsicura;
-            echo "<ul><li><a href='esegui_task.php'>inserisci nuova user</a></li>";
-            echo "<li><a href= 'form_cancellauser.php'>cancella user esistente</a></li></ul>";
+            //echo "<ul><li><a href='esegui_task.php'>inserisci nuova user</a></li>";
+            //echo "<li><a href= 'form_cancellauser.php'>cancella user esistente</a></li></ul>";
+            header("Location: menu.php");
         } else {
             echo "<p> Login NON corretto </p>";
             // l'istruzione header rimanda al sito LoginErrato.html per indicare all'utente l'errore e riproporre il form
