@@ -60,6 +60,7 @@ if (IsLogged("utente")) {
                     echo "<p>Righe generate: " . $mysqli->affected_rows . "</p>";
                     // il seguente metodo indica l'ultimo id inserito
                     echo "<p>Ultimo ID inserito: " . $mysqli->insert_id . "</p>";
+                    echo "<p><a href='esegui_task.php'>Inserire nuovo record</a></p>";
                     echo "<p><a href='login.html'> Tornare alla pagina di login </a></p>";
                     // echo "<p><a href='index.html'> Tornare alla pagina di login </a></p>"; //da utilizzare per Altervista
                 } else {
