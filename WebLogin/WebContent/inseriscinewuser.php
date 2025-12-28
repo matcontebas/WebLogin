@@ -9,6 +9,7 @@
 <body>
 <?php
 include 'cerca_chiave.php';
+include 'CheckLogin.php';
 $host = "localhost";
 $NomeDB = "matteo";
 $tabellaDB = "login";
@@ -23,7 +24,8 @@ $psw_DB = "rn5skCZucrBfARRaCzUT.";
 
 // ingresso
 session_start();
-if (IsLogged("utente")) {
+$stato_log= new CheckLogin();
+if ($stato_log->IsLogged()) {
 
     echo "<h2>" . "Esito inserimento new user e psw nel DB" . "</h2>";
     // purifico l'input utente con la funzione controllo_input
@@ -84,22 +86,6 @@ if (IsLogged("utente")) {
     echo "<p>Login non effettuato</p>";
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
 }// fine ciclo if per controllo login
-
-/**
- * La function controlla se il login è stato fatto.
- *
- * @param unknown $chiave:
- *            è la chiave della variabile $_SESSION
- * @return boolean: ritorna true se il login è attivo, altrimenti false
- */
-function IsLogged($chiave)
-{
-    if (isset($_SESSION[$chiave])) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 /**
  * La function toglie da un generico dato di input utente proveniente da un FORM html

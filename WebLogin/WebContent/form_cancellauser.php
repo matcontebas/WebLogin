@@ -7,7 +7,9 @@
 	<h1>Cancellazione user</h1>
 <?php
 session_start();
-if (IsLogged()) {
+include 'CheckLogin.php';
+$stato_log= new CheckLogin();
+if ($stato_log->IsLogged()) {
     echo "<p> Buongiorno user <b>";
     echo $_SESSION["utente"];
     echo "</b></p>";

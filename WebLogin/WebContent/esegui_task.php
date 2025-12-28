@@ -8,7 +8,9 @@
 <h1> Form di inserimento nuovo user e psw </h1>
 <?php
 session_start();
-if (IsLogged()) {
+include 'CheckLogin.php';
+$stato_log= new CheckLogin();
+if ($stato_log->IsLogged()) {
     //echo "<p> esegui task </p>";
     echo "<p> Buongiorno user <b>";
     echo $_SESSION["utente"];
@@ -32,19 +34,7 @@ if (IsLogged()) {
     echo "<p>Login non effettuato</p>";
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
 }
-/**
- * la funzione IsLogged controlla se la variabile di Sessione utente è stata impostata.
- * Se tale variabile restituisce falso, significa che è necessario rifare il login.
- * @return boolean: se la variabile di sessione "utente" è settata restituisce vero altrimenti falso
- */
-function IsLogged()
-{
-    if (isset($_SESSION["utente"])) {
-        return true;
-    } else {
-        return false;
-    }
-}
+
 ?>
 <footer>
 <p id="err" class= "errore"></p>
