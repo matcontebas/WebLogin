@@ -79,6 +79,7 @@ if (IsLogged()) {
 }
 
 // fine if per IsLogged
+//function da cancellare? E' da implementare come negli altri moduli con CheckLogin.php
 function IsLogged()
 {
     if (isset($_SESSION["utente"])) {
