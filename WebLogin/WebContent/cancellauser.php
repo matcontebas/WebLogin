@@ -9,6 +9,7 @@
 
 <?php
 include 'cerca_chiave.php';
+include 'CheckLogin.php';
 $hostname = "localhost";
 $NomeDB = "matteo";
 $tabellaDB = "login";
@@ -25,7 +26,8 @@ $campouser="userlogin";
 
 
 session_start();
-if (IsLogged()) {
+$stato_log= new CheckLogin();
+if ($stato_log->IsLogged()) {
     echo "<h2>esito cancellazione</h2>";
     echo "<p> Buongiorno user <b>";
     echo $_SESSION["utente"];
@@ -78,19 +80,26 @@ if (IsLogged()) {
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
 }
 
+<<<<<<< Upstream, based on branch 'master' of https://github.com/matcontebas/WebLogin.git
 // fine if per IsLogged
 //function da cancellare? E' da implementare come negli altri moduli con CheckLogin.php
 function IsLogged()
+=======
+/*function cancellata; E'stata implementata come negli altri moduli
+con la classe CheckLogin.php. Era solamente una prova di utilizzo di una function */
+
+/*function IsLogged()
+>>>>>>> f760cb4 Riprova commit con nuova password
 {
     if (isset($_SESSION["utente"])) {
         return true;
     } else {
         return false;
     }
-}
+}*/
 
 /**
- * La function toglie da un generico dato di input utente proveniente da un FORM html
+ * La function seguente toglie da un generico dato di input utente proveniente da un FORM html
  * tutti i caratteri speciali che potrebbero prestarsi ad attacchi hacker
  *
  * @param generico $data:
