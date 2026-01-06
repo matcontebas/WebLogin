@@ -80,16 +80,13 @@ if ($stato_log->IsLogged()) {
     echo "<a href='login.html'> Tornare alla pagina di login </a>";
 }
 
-<<<<<<< Upstream, based on branch 'master' of https://github.com/matcontebas/WebLogin.git
 // fine if per IsLogged
 //function da cancellare? E' da implementare come negli altri moduli con CheckLogin.php
-function IsLogged()
-=======
+//function IsLogged()
 /*function cancellata; E'stata implementata come negli altri moduli
 con la classe CheckLogin.php. Era solamente una prova di utilizzo di una function */
 
 /*function IsLogged()
->>>>>>> f760cb4 Riprova commit con nuova password
 {
     if (isset($_SESSION["utente"])) {
         return true;
